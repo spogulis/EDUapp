@@ -92,15 +92,17 @@ namespace FormsApp
         //Populate Set names list
         private void ReadSetnamesFromDirectories()
         {
+            //Null existing item list
+            HomeSetList.Items.Clear();
+            SetList.SetNames.Clear();
+            
+
             //Remove full path from SET dir names and add sets to list
             foreach (var name in Directory.GetDirectories(_setFolder))
             {
                 SetList.AddSetNames(name.Remove(0, name.LastIndexOf('\\') + 1));
             }
-            
-            //Null existing item list
-            HomeSetList.Items.Clear();
-            
+                                    
             //Populate SetList with real data
             foreach (var set in SetList.SetNames)
             {
@@ -156,6 +158,7 @@ namespace FormsApp
             {
                 VideoShowPanel.Visible = false;
                 OverviewPanel.Visible = true;
+                vlcControl1.Stop();
             }
             
             else if (SetPanel.Visible == true)
@@ -617,7 +620,7 @@ namespace FormsApp
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void BtnPlayPause_Click(object sender, EventArgs e)
         {
             if (vlcControl1.IsPlaying == true)
             {
@@ -626,6 +629,15 @@ namespace FormsApp
             {
                 vlcControl1.Play();
             }
+        }
+
+        private void TitleBtnDelete_Click(object sender, EventArgs e)
+        {
+            var path = Path.Combine(_setFolder, HomeSetList.SelectedItem.ToString());
+            Directory.Delete(path, true);
+            
+            //HomeSetList.Items.Clear();
+            ReadSetnamesFromDirectories();
         }
     }
 }

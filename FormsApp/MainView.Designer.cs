@@ -40,6 +40,9 @@ namespace FormsApp
             this.ContentContainer = new System.Windows.Forms.Panel();
             this.SetPanel = new System.Windows.Forms.Panel();
             this.VideoShowPanel = new System.Windows.Forms.Panel();
+            this.VideoShowPanelControl = new System.Windows.Forms.TableLayoutPanel();
+            this.VideoShowControls = new System.Windows.Forms.TableLayoutPanel();
+            this.BtnPlayPause = new System.Windows.Forms.Button();
             this.OverviewPanel = new System.Windows.Forms.Panel();
             this.SetLayoutControl = new System.Windows.Forms.TableLayoutPanel();
             this.SetLeftLayoutControl = new System.Windows.Forms.TableLayoutPanel();
@@ -74,14 +77,13 @@ namespace FormsApp
             this.TitleBtnDelete = new System.Windows.Forms.Button();
             this.ViewTitle = new System.Windows.Forms.Label();
             this.TitleBtnBack = new System.Windows.Forms.Button();
-            this.VideoShowPanelControl = new System.Windows.Forms.TableLayoutPanel();
-            this.VideoShowControls = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
             this.BaseLayoutControl.SuspendLayout();
             this.HomePanel.SuspendLayout();
             this.ContentContainer.SuspendLayout();
             this.SetPanel.SuspendLayout();
             this.VideoShowPanel.SuspendLayout();
+            this.VideoShowPanelControl.SuspendLayout();
+            this.VideoShowControls.SuspendLayout();
             this.OverviewPanel.SuspendLayout();
             this.SetLayoutControl.SuspendLayout();
             this.SetLeftLayoutControl.SuspendLayout();
@@ -97,8 +99,6 @@ namespace FormsApp
             this.HomePanelContainer.SuspendLayout();
             this.TitlePanel.SuspendLayout();
             this.HeaderLayoutControl.SuspendLayout();
-            this.VideoShowPanelControl.SuspendLayout();
-            this.VideoShowControls.SuspendLayout();
             this.SuspendLayout();
             // 
             // SetNewContentLabel
@@ -147,7 +147,7 @@ namespace FormsApp
             this.HomePanel.ColumnCount = 3;
             this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.098373F));
             this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.90163F));
-            this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 68F));
             this.HomePanel.Controls.Add(this.ContentContainer, 1, 1);
             this.HomePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomePanel.Location = new System.Drawing.Point(3, 53);
@@ -161,13 +161,13 @@ namespace FormsApp
             // ContentContainer
             // 
             this.ContentContainer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(240)))), ((int)(((byte)(204)))));
+            this.ContentContainer.Controls.Add(this.HomePanelContainer);
             this.ContentContainer.Controls.Add(this.SetPanel);
             this.ContentContainer.Controls.Add(this.AddPanelContainer);
-            this.ContentContainer.Controls.Add(this.HomePanelContainer);
             this.ContentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentContainer.Location = new System.Drawing.Point(41, 36);
             this.ContentContainer.Name = "ContentContainer";
-            this.ContentContainer.Size = new System.Drawing.Size(1203, 604);
+            this.ContentContainer.Size = new System.Drawing.Size(1201, 604);
             this.ContentContainer.TabIndex = 15;
             // 
             // SetPanel
@@ -177,7 +177,7 @@ namespace FormsApp
             this.SetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetPanel.Location = new System.Drawing.Point(0, 0);
             this.SetPanel.Name = "SetPanel";
-            this.SetPanel.Size = new System.Drawing.Size(1203, 604);
+            this.SetPanel.Size = new System.Drawing.Size(1201, 604);
             this.SetPanel.TabIndex = 17;
             this.SetPanel.Visible = false;
             // 
@@ -187,9 +187,51 @@ namespace FormsApp
             this.VideoShowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VideoShowPanel.Location = new System.Drawing.Point(0, 0);
             this.VideoShowPanel.Name = "VideoShowPanel";
-            this.VideoShowPanel.Size = new System.Drawing.Size(1203, 604);
+            this.VideoShowPanel.Size = new System.Drawing.Size(1201, 604);
             this.VideoShowPanel.TabIndex = 0;
             this.VideoShowPanel.Visible = false;
+            // 
+            // VideoShowPanelControl
+            // 
+            this.VideoShowPanelControl.ColumnCount = 1;
+            this.VideoShowPanelControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.VideoShowPanelControl.Controls.Add(this.VideoShowControls, 0, 1);
+            this.VideoShowPanelControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VideoShowPanelControl.Location = new System.Drawing.Point(0, 0);
+            this.VideoShowPanelControl.Name = "VideoShowPanelControl";
+            this.VideoShowPanelControl.RowCount = 2;
+            this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.04636F));
+            this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.953642F));
+            this.VideoShowPanelControl.Size = new System.Drawing.Size(1201, 604);
+            this.VideoShowPanelControl.TabIndex = 0;
+            // 
+            // VideoShowControls
+            // 
+            this.VideoShowControls.ColumnCount = 3;
+            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.62925F));
+            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.37075F));
+            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.VideoShowControls.Controls.Add(this.BtnPlayPause, 0, 0);
+            this.VideoShowControls.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.VideoShowControls.Location = new System.Drawing.Point(3, 564);
+            this.VideoShowControls.Name = "VideoShowControls";
+            this.VideoShowControls.RowCount = 1;
+            this.VideoShowControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.VideoShowControls.Size = new System.Drawing.Size(1195, 37);
+            this.VideoShowControls.TabIndex = 0;
+            // 
+            // BtnPlayPause
+            // 
+            this.BtnPlayPause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(236)))), ((int)(((byte)(162)))));
+            this.BtnPlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnPlayPause.ForeColor = System.Drawing.Color.DarkOliveGreen;
+            this.BtnPlayPause.Location = new System.Drawing.Point(3, 3);
+            this.BtnPlayPause.Name = "BtnPlayPause";
+            this.BtnPlayPause.Size = new System.Drawing.Size(118, 31);
+            this.BtnPlayPause.TabIndex = 0;
+            this.BtnPlayPause.Text = "Play/Pause";
+            this.BtnPlayPause.UseVisualStyleBackColor = false;
+            this.BtnPlayPause.Click += new System.EventHandler(this.BtnPlayPause_Click);
             // 
             // OverviewPanel
             // 
@@ -197,7 +239,7 @@ namespace FormsApp
             this.OverviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OverviewPanel.Location = new System.Drawing.Point(0, 0);
             this.OverviewPanel.Name = "OverviewPanel";
-            this.OverviewPanel.Size = new System.Drawing.Size(1203, 604);
+            this.OverviewPanel.Size = new System.Drawing.Size(1201, 604);
             this.OverviewPanel.TabIndex = 0;
             this.OverviewPanel.Visible = false;
             // 
@@ -215,7 +257,7 @@ namespace FormsApp
             this.SetLayoutControl.Name = "SetLayoutControl";
             this.SetLayoutControl.RowCount = 1;
             this.SetLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SetLayoutControl.Size = new System.Drawing.Size(1203, 604);
+            this.SetLayoutControl.Size = new System.Drawing.Size(1201, 604);
             this.SetLayoutControl.TabIndex = 16;
             // 
             // SetLeftLayoutControl
@@ -275,7 +317,7 @@ namespace FormsApp
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SetRightLayoutControl.Size = new System.Drawing.Size(1024, 598);
+            this.SetRightLayoutControl.Size = new System.Drawing.Size(1022, 598);
             this.SetRightLayoutControl.TabIndex = 1;
             // 
             // VideoPanelContainer
@@ -287,7 +329,7 @@ namespace FormsApp
             this.VideoPanelContainer.Location = new System.Drawing.Point(0, 26);
             this.VideoPanelContainer.Margin = new System.Windows.Forms.Padding(0);
             this.VideoPanelContainer.Name = "VideoPanelContainer";
-            this.VideoPanelContainer.Size = new System.Drawing.Size(1024, 27);
+            this.VideoPanelContainer.Size = new System.Drawing.Size(1022, 27);
             this.VideoPanelContainer.TabIndex = 5;
             // 
             // BtnBold
@@ -329,7 +371,7 @@ namespace FormsApp
             // 
             this.SetRightContentTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightContentTitle.AutoSize = true;
-            this.SetRightContentTitle.Location = new System.Drawing.Point(479, 3);
+            this.SetRightContentTitle.Location = new System.Drawing.Point(478, 3);
             this.SetRightContentTitle.Name = "SetRightContentTitle";
             this.SetRightContentTitle.Size = new System.Drawing.Size(66, 20);
             this.SetRightContentTitle.TabIndex = 2;
@@ -345,7 +387,7 @@ namespace FormsApp
             this.VideoPanel.MaximumSize = new System.Drawing.Size(0, 170);
             this.VideoPanel.Name = "VideoPanel";
             this.VideoPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.VideoPanel.Size = new System.Drawing.Size(1018, 170);
+            this.VideoPanel.Size = new System.Drawing.Size(1016, 170);
             this.VideoPanel.TabIndex = 3;
             this.VideoPanel.WrapContents = false;
             // 
@@ -353,7 +395,7 @@ namespace FormsApp
             // 
             this.SetRightVideosTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightVideosTitle.AutoSize = true;
-            this.SetRightVideosTitle.Location = new System.Drawing.Point(476, 397);
+            this.SetRightVideosTitle.Location = new System.Drawing.Point(475, 397);
             this.SetRightVideosTitle.Name = "SetRightVideosTitle";
             this.SetRightVideosTitle.Size = new System.Drawing.Size(72, 20);
             this.SetRightVideosTitle.TabIndex = 1;
@@ -367,7 +409,7 @@ namespace FormsApp
             this.SetRightNoteTools.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightNoteTools.Location = new System.Drawing.Point(3, 351);
             this.SetRightNoteTools.Name = "SetRightNoteTools";
-            this.SetRightNoteTools.Size = new System.Drawing.Size(1018, 39);
+            this.SetRightNoteTools.Size = new System.Drawing.Size(1016, 39);
             this.SetRightNoteTools.TabIndex = 4;
             this.SetRightNoteTools.WrapContents = false;
             // 
@@ -409,7 +451,7 @@ namespace FormsApp
             this.SetRightMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightMainContent.Location = new System.Drawing.Point(3, 56);
             this.SetRightMainContent.Name = "SetRightMainContent";
-            this.SetRightMainContent.Size = new System.Drawing.Size(1018, 289);
+            this.SetRightMainContent.Size = new System.Drawing.Size(1016, 289);
             this.SetRightMainContent.TabIndex = 0;
             this.SetRightMainContent.Text = "";
             // 
@@ -420,7 +462,7 @@ namespace FormsApp
             this.AddPanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddPanelContainer.Location = new System.Drawing.Point(0, 0);
             this.AddPanelContainer.Name = "AddPanelContainer";
-            this.AddPanelContainer.Size = new System.Drawing.Size(1203, 604);
+            this.AddPanelContainer.Size = new System.Drawing.Size(1201, 604);
             this.AddPanelContainer.TabIndex = 17;
             this.AddPanelContainer.Visible = false;
             // 
@@ -450,7 +492,7 @@ namespace FormsApp
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.AddPanel.Size = new System.Drawing.Size(1203, 604);
+            this.AddPanel.Size = new System.Drawing.Size(1201, 604);
             this.AddPanel.TabIndex = 1;
             // 
             // SetNewTitleInput
@@ -532,7 +574,7 @@ namespace FormsApp
             this.HomePanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomePanelContainer.Location = new System.Drawing.Point(0, 0);
             this.HomePanelContainer.Name = "HomePanelContainer";
-            this.HomePanelContainer.Size = new System.Drawing.Size(1203, 604);
+            this.HomePanelContainer.Size = new System.Drawing.Size(1201, 604);
             this.HomePanelContainer.TabIndex = 16;
             // 
             // HomeSetList
@@ -547,7 +589,7 @@ namespace FormsApp
             this.HomeSetList.Location = new System.Drawing.Point(0, 0);
             this.HomeSetList.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.HomeSetList.Name = "HomeSetList";
-            this.HomeSetList.Size = new System.Drawing.Size(1203, 604);
+            this.HomeSetList.Size = new System.Drawing.Size(1201, 604);
             this.HomeSetList.TabIndex = 0;
             // 
             // TitlePanel
@@ -608,6 +650,7 @@ namespace FormsApp
             this.TitleBtnDelete.TabIndex = 4;
             this.TitleBtnDelete.Text = "Delete selected";
             this.TitleBtnDelete.UseVisualStyleBackColor = false;
+            this.TitleBtnDelete.Click += new System.EventHandler(this.TitleBtnDelete_Click);
             // 
             // ViewTitle
             // 
@@ -634,46 +677,6 @@ namespace FormsApp
             this.TitleBtnBack.Visible = false;
             this.TitleBtnBack.Click += new System.EventHandler(this.TitleBtnBack_Click);
             // 
-            // VideoShowPanelControl
-            // 
-            this.VideoShowPanelControl.ColumnCount = 1;
-            this.VideoShowPanelControl.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.VideoShowPanelControl.Controls.Add(this.VideoShowControls, 0, 1);
-            this.VideoShowPanelControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VideoShowPanelControl.Location = new System.Drawing.Point(0, 0);
-            this.VideoShowPanelControl.Name = "VideoShowPanelControl";
-            this.VideoShowPanelControl.RowCount = 2;
-            this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.04636F));
-            this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.953642F));
-            this.VideoShowPanelControl.Size = new System.Drawing.Size(1203, 604);
-            this.VideoShowPanelControl.TabIndex = 0;
-            // 
-            // VideoShowControls
-            // 
-            this.VideoShowControls.ColumnCount = 3;
-            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 10.62925F));
-            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 89.37075F));
-            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.VideoShowControls.Controls.Add(this.button1, 0, 0);
-            this.VideoShowControls.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.VideoShowControls.Location = new System.Drawing.Point(3, 564);
-            this.VideoShowControls.Name = "VideoShowControls";
-            this.VideoShowControls.RowCount = 1;
-            this.VideoShowControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.VideoShowControls.Size = new System.Drawing.Size(1197, 37);
-            this.VideoShowControls.TabIndex = 0;
-            // 
-            // button1
-            // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(119, 31);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
@@ -693,6 +696,8 @@ namespace FormsApp
             this.ContentContainer.ResumeLayout(false);
             this.SetPanel.ResumeLayout(false);
             this.VideoShowPanel.ResumeLayout(false);
+            this.VideoShowPanelControl.ResumeLayout(false);
+            this.VideoShowControls.ResumeLayout(false);
             this.OverviewPanel.ResumeLayout(false);
             this.SetLayoutControl.ResumeLayout(false);
             this.SetLayoutControl.PerformLayout();
@@ -715,8 +720,6 @@ namespace FormsApp
             this.TitlePanel.ResumeLayout(false);
             this.HeaderLayoutControl.ResumeLayout(false);
             this.HeaderLayoutControl.PerformLayout();
-            this.VideoShowPanelControl.ResumeLayout(false);
-            this.VideoShowControls.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -767,6 +770,6 @@ namespace FormsApp
         private System.Windows.Forms.Panel OverviewPanel;
         private TableLayoutPanel VideoShowPanelControl;
         private TableLayoutPanel VideoShowControls;
-        private Button button1;
+        private Button BtnPlayPause;
     }
 }

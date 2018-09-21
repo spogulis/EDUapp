@@ -22,13 +22,10 @@ namespace FormsApp
             InitializeComponent();
             ToolTip tooltip = new ToolTip();
             VlcControl vlcControl1 = new VlcControl();
-            
-            
-            
-            
-        }
-        public static string _exeFolder = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
-        private static string _setFolder = System.IO.Path.Combine(_exeFolder, "Sets");
+            }
+
+        public static string _exeFolder = Path.GetDirectoryName(Application.ExecutablePath);
+        private static string _setFolder = Path.Combine(_exeFolder, "Sets");
         private string _SelectedSet;
         ToolTip tooltip = new ToolTip();
         VlcControl vlcControl1 = new VlcControl();
@@ -216,6 +213,29 @@ namespace FormsApp
             }
         }
         
+        //Set selected topic to first
+        private void ResetTopic()
+        {
+            //Create set object
+            Set set = new Set(_SelectedSet);
+            set.PopulateTopics(_exeFolder);
+                
+            //Redraw topic list
+            PopulateTopicList();
+                
+            //Change topicname field contents
+            TopicName.Text = SetLeftTopicList.Items[0].ToString(); //Fill topic name field
+            var path = Path.Combine(_setFolder, set.Title);
+            path = Path.Combine(path, set.Topics[0]);
+            var filename = path + @"\" + set.Topics[0] + ".rtf";
+
+            //Read topic file contents
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                SetRightMainContent.Rtf = sr.ReadToEnd();
+            }
+        }
+
         //Clicking ADD btn
         private void HomeBtnAdd_Click(object sender, EventArgs e)
         {
@@ -733,6 +753,84 @@ namespace FormsApp
             ReadSetnamesFromDirectories();
         }
 
-        
+        private void BtnCS_Click(object sender, EventArgs e)
+        {
+            
+            CTag("private ", Color.Red, 0);
+            CTag("public ", Color.Red, 0);
+            CTag("static ", Color.Red, 0);
+            CTag("abstract ", Color.Red, 0);
+            CTag("virtual ", Color.Red, 0);
+            CTag("override ", Color.Red, 0);
+            CTag("class ", Color.Blue, 0);
+            CTag("void ", Color.Blue, 0);
+            CTag("new ", Color.Red, 0);
+            CTag("if", Color.Blue, 0);
+            CTag("else", Color.Blue, 0);
+            CTag("try", Color.Blue, 0);
+            CTag("catch", Color.Blue, 0);
+            CTag("except", Color.Blue, 0);
+            CTag("this", Color.Blue, 0);
+            CTag("=", Color.Blue, 0);
+            CTag("+", Color.Blue, 0);
+            CTag("-", Color.Blue, 0);
+            CTag("*", Color.Blue, 0);
+            CTag("/", Color.Blue, 0);
+            CTag("%", Color.Blue, 0);
+            CTag("{", Color.Blue, 0);
+            CTag("}", Color.Blue, 0);
+            CTag("(", Color.Blue, 0);
+            CTag(")", Color.Blue, 0);
+            CTag("[", Color.Blue, 0);
+            CTag("]", Color.Blue, 0);
+            CTag("//", Color.Red, 0);
+            CTag(";", Color.Red, 0);
+            CTag(":", Color.Red, 0);            
+            CTag("float ", Color.Blue, 0);
+            CTag("int ", Color.Blue, 0);
+            CTag("string ", Color.Blue, 0);
+            CTag("double ", Color.Blue, 0);
+            CTag("return ", Color.Blue, 0);
+            CTag("EventArgs", Color.Red, 0);
+            CTag("EventHandler", Color.Red, 0);
+            
+        }
+
+        //C# tag
+        private void CTag(string word, Color color, int startIndex)
+        {
+            if (SetRightMainContent.Text.Contains(word))
+            {
+
+                int index = -1;
+                int selectStart = SetRightMainContent.SelectionStart;
+                while ((index = SetRightMainContent.Text.IndexOf(word, (index + 1))) != -1)
+                {
+                SetRightMainContent.Select((index + startIndex), word.Length);
+                if (SetRightMainContent.SelectionColor == color)
+                    {
+                        SetRightMainContent.SelectionColor = Color.Black;
+                    } else
+                    {
+                        SetRightMainContent.SelectionColor = color;
+                    }
+                }
+            }
+        }
+
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            SetRightMainContent.SelectAll();
+            SetRightMainContent.SelectionColor = Color.Black;
+            //MessageBox.Show(SetRightMainContent.ForeColor.ToString());
+        }
+
+        private void BtnDelTopic_Click(object sender, EventArgs e)
+        {
+            var path = GetPath(_SelectedSet, TopicName.Text);
+            Directory.Delete(path, true);
+            PopulateTopicList();
+            ResetTopic();
+        }
     }
 }

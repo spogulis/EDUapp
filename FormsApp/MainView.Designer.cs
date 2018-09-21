@@ -242,7 +242,6 @@ namespace FormsApp
             this.BtnPlayPause.TabIndex = 0;
             this.BtnPlayPause.Text = "Play/Pause";
             this.BtnPlayPause.UseVisualStyleBackColor = false;
-            this.BtnPlayPause.Click += new System.EventHandler(this.BtnPlayPause_Click);
             // 
             // label1
             // 

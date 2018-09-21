@@ -25,6 +25,7 @@ namespace FormsApp
             
             
             
+            
         }
         public static string _exeFolder = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
         private static string _setFolder = System.IO.Path.Combine(_exeFolder, "Sets");
@@ -43,14 +44,8 @@ namespace FormsApp
             vlcControl1.EndInit();
             VideoShowPanelControl.Controls.Add(vlcControl1);
             vlcControl1.Dock = DockStyle.Fill;
-            //this.vlcControl1.Click += new EventHandler(vlcControl1_Click);
             
-            //Trackbar
-            //var a = (int)vlcControl1.Length / 1000;           
-            //trackBar1.Maximum = a;  
-            //var c = a / 60;
-            //a = a - c * 60;        
-            //label1.Text = 0 + "/" + c+":"+a;   
+            
             this.trackBar1.Scroll += new EventHandler(trackBar1_Scroll);
             vlcControl1.Playing += new System.EventHandler<VlcMediaPlayerPlayingEventArgs>(SetProgresMax);
             this.vlcControl1.PositionChanged += new System.EventHandler<Vlc.DotNet.Core.VlcMediaPlayerPositionChangedEventArgs>(this.vlcControl1_PositionChanged);
@@ -578,6 +573,7 @@ namespace FormsApp
             ToolTip picTooltip = new ToolTip();
             picTooltip.SetToolTip(picture, newFilename.Remove(0, newFilename.LastIndexOf("\\") + 1));
         }
+
         private void ShowVideo(int index)
         {
             
@@ -585,6 +581,14 @@ namespace FormsApp
             VideoShowPanel.Visible = true;
             OverviewPanel.Visible = false;
             vlcControl1.Play();
+            Control vlcControlTransparentPanel = new Panel();
+            VideoShowPanelControl.Controls.Add(vlcControlTransparentPanel);
+            
+            vlcControlTransparentPanel.Dock = DockStyle.Fill;
+            vlcControlTransparentPanel.BackColor = Color.Transparent;
+            
+            vlcControlTransparentPanel.BringToFront();
+            vlcControlTransparentPanel.MouseClick += new MouseEventHandler(panelClick_MouseClick);
 
             }
 
@@ -600,7 +604,6 @@ namespace FormsApp
                 c = a / 60; // Length (m)
                 a = a % 60; // Length (s)
                 label1.Text = 0 + "/" + c+":"+a; 
-                
             }));
         } 
         
@@ -655,7 +658,7 @@ namespace FormsApp
                        
         //}
 
-        private void BtnPlayPause_Click(object sender, EventArgs e)
+        private void panelClick_MouseClick(object sender, EventArgs e)
         {
             if (vlcControl1.IsPlaying == true)
             {
@@ -689,23 +692,22 @@ namespace FormsApp
         {
             if (this.InvokeRequired)
             {
-                this.Invoke(new UpdateControlsDelegate(seeker));
+                this.Invoke(new UpdateControlsDelegate(currentTrackTime));
             }
             else
             {
-                seeker();
+                currentTrackTime();
             }
         }
 
         //Update current video time label 
-        private void seeker()
+        private void currentTrackTime()
         {                        
             
             int b = (int)vlcControl1.VlcMediaPlayer.Time / 1000;
             int d = b / 60;
             b = b - d * 60;
             label1.Text = d+":"+b + "/"+ c + ":" + a; //min : sec / 
-            //The Time value is milisecond, you have divide 1000 for be second.
         }
                 
         //Invoke update controls on video position change

@@ -35,6 +35,7 @@ namespace FormsApp
         public int a = 0; 
         public int c = 0;
         public delegate void UpdateControlsDelegate();
+        //On form load
         private void MainView_Load(object sender, EventArgs e)
         {
             //Initialize video control
@@ -44,7 +45,8 @@ namespace FormsApp
             vlcControl1.EndInit();
             VideoShowPanelControl.Controls.Add(vlcControl1);
             vlcControl1.Dock = DockStyle.Fill;
-            
+            vlcControl1.Video.IsMouseInputEnabled = false;
+            vlcControl1.Video.IsKeyInputEnabled = false;
             
             this.trackBar1.Scroll += new EventHandler(trackBar1_Scroll);
             vlcControl1.Playing += new System.EventHandler<VlcMediaPlayerPlayingEventArgs>(SetProgresMax);
@@ -63,6 +65,12 @@ namespace FormsApp
             //Color cell borders TODO: Check why can't paint all borders for nested containers
             //SetLeftLayoutControl.CellPaint += SetLeftLayoutControl_CellPaint;
         }
+        
+        /// <summary>
+        /// 
+        /// GENERAL
+        /// 
+        /// </summary>
         
         //Get safe filename
         public string GetSafeFilename(string filename)
@@ -99,6 +107,52 @@ namespace FormsApp
             var thumbpath = Path.Combine(videopath, "Thumbnails");
             Directory.CreateDirectory(thumbpath); //Create thumbnail dir
         }
+        
+        /// <summary>
+        /// 
+        /// TITLE METHODS
+        /// 
+        /// </summary>
+
+        //Clicking BACK btn
+        private void TitleBtnBack_Click(object sender, EventArgs e)
+        {
+            if (SetPanel.Visible == true && VideoShowPanel.Visible == true)
+            {
+                VideoShowPanel.Visible = false;
+                OverviewPanel.Visible = true;
+                vlcControl1.Stop();
+            }
+            
+            else if (SetPanel.Visible == true)
+            {
+                SetPanel.Visible = false;
+                TitleBtnBack.Visible = false;
+                HomePanelContainer.Visible = true;
+                TitleBtnAdd.Visible = true;
+                TitleBtnDelete.Visible = true;
+                ViewTitle.Text = "List of sets";
+                SetList.SetNames.Clear();
+                SetLeftTopicList.Items.Clear();
+                VideoPanel.Controls.Clear();
+            } 
+            else if (AddPanelContainer.Visible == true)
+            {
+                AddPanelContainer.Visible = false;
+                HomePanelContainer.Visible = true;
+                ViewTitle.Text = "List of sets";
+            }
+            else if (HomePanelContainer.Visible == true)
+            {
+                TitleBtnBack.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// HOME VIEW
+        /// 
+        /// </summary>
         
         //Populate Set names list
         private void ReadSetnamesFromDirectories()
@@ -161,41 +215,7 @@ namespace FormsApp
 
             }
         }
-
-        //Clicking BACK btn
-        private void TitleBtnBack_Click(object sender, EventArgs e)
-        {
-            if (SetPanel.Visible == true && VideoShowPanel.Visible == true)
-            {
-                VideoShowPanel.Visible = false;
-                OverviewPanel.Visible = true;
-                vlcControl1.Stop();
-            }
-            
-            else if (SetPanel.Visible == true)
-            {
-                SetPanel.Visible = false;
-                TitleBtnBack.Visible = false;
-                HomePanelContainer.Visible = true;
-                TitleBtnAdd.Visible = true;
-                TitleBtnDelete.Visible = true;
-                ViewTitle.Text = "List of sets";
-                SetList.SetNames.Clear();
-                SetLeftTopicList.Items.Clear();
-                VideoPanel.Controls.Clear();
-            } 
-            else if (AddPanelContainer.Visible == true)
-            {
-                AddPanelContainer.Visible = false;
-                HomePanelContainer.Visible = true;
-                ViewTitle.Text = "List of sets";
-            }
-            else if (HomePanelContainer.Visible == true)
-            {
-                TitleBtnBack.Visible = false;
-            }
-        }
-
+        
         //Clicking ADD btn
         private void HomeBtnAdd_Click(object sender, EventArgs e)
         {
@@ -205,6 +225,12 @@ namespace FormsApp
             TitleBtnBack.Visible = true;
         }
 
+        /// <summary>
+        /// 
+        /// ADD NEW MENU METHODS
+        /// 
+        /// </summary>
+        
         //Create set file
         private void CreateSet(string setname, string topicname)
         {
@@ -273,6 +299,12 @@ namespace FormsApp
                 MessageBox.Show("Please fill at least SET name and topic name");
             }
         }
+        
+        /// <summary>
+        /// 
+        /// SET METHODS
+        /// 
+        /// </summary>
         
         //Populate topic list
         private void PopulateTopicList()
@@ -581,14 +613,8 @@ namespace FormsApp
             VideoShowPanel.Visible = true;
             OverviewPanel.Visible = false;
             vlcControl1.Play();
-            Control vlcControlTransparentPanel = new Panel();
-            VideoShowPanelControl.Controls.Add(vlcControlTransparentPanel);
+            vlcControl1.MouseClick += new MouseEventHandler(vlcControl1_Click);
             
-            vlcControlTransparentPanel.Dock = DockStyle.Fill;
-            vlcControlTransparentPanel.BackColor = Color.Transparent;
-            
-            vlcControlTransparentPanel.BringToFront();
-            vlcControlTransparentPanel.MouseClick += new MouseEventHandler(panelClick_MouseClick);
 
             }
 
@@ -607,7 +633,7 @@ namespace FormsApp
             }));
         } 
         
-
+        //Clear thumbnails from thumb panel
         private void ClearThumbnails(string setname, string topicname)
         {
             //Reset videopanel controls
@@ -627,38 +653,8 @@ namespace FormsApp
             }
         }
 
-        //
-        // PATH METHODS
-        //
-
-        private string GetPath(string setname)
-        {
-            return Path.Combine(_setFolder, setname);
-        }
-
-        private string GetPath(string setname, string topicname)
-        {
-            var path = Path.Combine(_setFolder, setname);
-            path = Path.Combine(path, topicname);
-            return path;
-        }
-
-        //private void vlcControl1_Click(object sender, EventArgs e)
-        //{
-        //    if (vlcControl1.IsPlaying == true)
-        //    {
-        //        vlcControl1.Pause();
-        //    } else if (vlcControl1.IsPlaying == true)
-        //    {
-        //        MessageBox.Show(vlcControl1.IsPlaying.ToString());
-                
-        //        vlcControl1.Play();
-        //    }
-        //    vlcControl1.Play();
-                       
-        //}
-
-        private void panelClick_MouseClick(object sender, EventArgs e)
+        //Video click event
+        private void vlcControl1_Click(object sender, EventArgs e)
         {
             if (vlcControl1.IsPlaying == true)
             {
@@ -668,14 +664,7 @@ namespace FormsApp
                 vlcControl1.Play();
             }
         }
-
-        private void TitleBtnDelete_Click(object sender, EventArgs e)
-        {
-            var path = Path.Combine(_setFolder, HomeSetList.SelectedItem.ToString());
-            Directory.Delete(path, true);
-            ReadSetnamesFromDirectories();
-        }
-
+        
         //Trackbar scroll behavior
         private void trackBar1_Scroll(object sender, EventArgs e)
         {                        
@@ -703,11 +692,11 @@ namespace FormsApp
         //Update current video time label 
         private void currentTrackTime()
         {                        
-            
             int b = (int)vlcControl1.VlcMediaPlayer.Time / 1000;
             int d = b / 60;
             b = b - d * 60;
-            label1.Text = d+":"+b + "/"+ c + ":" + a; //min : sec / 
+            label1.Text = d+":"+b + "/"+ c + ":" + a; //min : sec /
+            trackBar1.Value = b;
         }
                 
         //Invoke update controls on video position change
@@ -715,5 +704,35 @@ namespace FormsApp
         {
             InvokeUpdateControls();
         }
+                
+        /// <summary>
+        /// 
+        /// PATH METHODS
+        /// 
+        /// </summary>
+        /// 
+
+        private string GetPath(string setname)
+        {
+            return Path.Combine(_setFolder, setname);
+        }
+
+        private string GetPath(string setname, string topicname)
+        {
+            var path = Path.Combine(_setFolder, setname);
+            path = Path.Combine(path, topicname);
+            return path;
+        }
+
+        
+        //Home del btn click
+        private void TitleBtnDelete_Click(object sender, EventArgs e)
+        {
+            var path = Path.Combine(_setFolder, HomeSetList.SelectedItem.ToString());
+            Directory.Delete(path, true);
+            ReadSetnamesFromDirectories();
+        }
+
+        
     }
 }

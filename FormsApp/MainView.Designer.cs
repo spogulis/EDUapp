@@ -42,7 +42,6 @@ namespace FormsApp
             this.VideoShowPanel = new System.Windows.Forms.Panel();
             this.VideoShowPanelControl = new System.Windows.Forms.TableLayoutPanel();
             this.VideoShowControls = new System.Windows.Forms.TableLayoutPanel();
-            this.BtnPlayPause = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.OverviewPanel = new System.Windows.Forms.Panel();
@@ -150,7 +149,7 @@ namespace FormsApp
             this.HomePanel.ColumnCount = 3;
             this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.098373F));
             this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.90163F));
-            this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
+            this.HomePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 71F));
             this.HomePanel.Controls.Add(this.ContentContainer, 1, 1);
             this.HomePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomePanel.Location = new System.Drawing.Point(3, 53);
@@ -170,7 +169,7 @@ namespace FormsApp
             this.ContentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentContainer.Location = new System.Drawing.Point(41, 36);
             this.ContentContainer.Name = "ContentContainer";
-            this.ContentContainer.Size = new System.Drawing.Size(1199, 604);
+            this.ContentContainer.Size = new System.Drawing.Size(1198, 604);
             this.ContentContainer.TabIndex = 15;
             // 
             // SetPanel
@@ -180,7 +179,7 @@ namespace FormsApp
             this.SetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetPanel.Location = new System.Drawing.Point(0, 0);
             this.SetPanel.Name = "SetPanel";
-            this.SetPanel.Size = new System.Drawing.Size(1199, 604);
+            this.SetPanel.Size = new System.Drawing.Size(1198, 604);
             this.SetPanel.TabIndex = 17;
             this.SetPanel.Visible = false;
             // 
@@ -190,7 +189,7 @@ namespace FormsApp
             this.VideoShowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VideoShowPanel.Location = new System.Drawing.Point(0, 0);
             this.VideoShowPanel.Name = "VideoShowPanel";
-            this.VideoShowPanel.Size = new System.Drawing.Size(1199, 604);
+            this.VideoShowPanel.Size = new System.Drawing.Size(1198, 604);
             this.VideoShowPanel.TabIndex = 0;
             this.VideoShowPanel.Visible = false;
             // 
@@ -207,47 +206,34 @@ namespace FormsApp
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.04636F));
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.953642F));
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.VideoShowPanelControl.Size = new System.Drawing.Size(1199, 604);
+            this.VideoShowPanelControl.Size = new System.Drawing.Size(1198, 604);
             this.VideoShowPanelControl.TabIndex = 0;
             // 
             // VideoShowControls
             // 
-            this.VideoShowControls.ColumnCount = 8;
+            this.VideoShowControls.ColumnCount = 7;
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.VideoShowControls.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.VideoShowControls.Controls.Add(this.label1, 3, 0);
-            this.VideoShowControls.Controls.Add(this.BtnPlayPause, 4, 0);
             this.VideoShowControls.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VideoShowControls.Location = new System.Drawing.Point(3, 559);
             this.VideoShowControls.Name = "VideoShowControls";
             this.VideoShowControls.RowCount = 1;
             this.VideoShowControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.VideoShowControls.Size = new System.Drawing.Size(1193, 42);
+            this.VideoShowControls.Size = new System.Drawing.Size(1192, 42);
             this.VideoShowControls.TabIndex = 0;
-            // 
-            // BtnPlayPause
-            // 
-            this.BtnPlayPause.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(236)))), ((int)(((byte)(162)))));
-            this.BtnPlayPause.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnPlayPause.ForeColor = System.Drawing.Color.DarkOliveGreen;
-            this.BtnPlayPause.Location = new System.Drawing.Point(599, 3);
-            this.BtnPlayPause.Name = "BtnPlayPause";
-            this.BtnPlayPause.Size = new System.Drawing.Size(290, 36);
-            this.BtnPlayPause.TabIndex = 0;
-            this.BtnPlayPause.Text = "Play/Pause";
-            this.BtnPlayPause.UseVisualStyleBackColor = false;
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(421, 11);
+            this.label1.Location = new System.Drawing.Point(569, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 20);
             this.label1.TabIndex = 1;
@@ -258,7 +244,7 @@ namespace FormsApp
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBar1.Location = new System.Drawing.Point(3, 521);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(1193, 32);
+            this.trackBar1.Size = new System.Drawing.Size(1192, 32);
             this.trackBar1.TabIndex = 1;
             // 
             // OverviewPanel
@@ -267,7 +253,7 @@ namespace FormsApp
             this.OverviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OverviewPanel.Location = new System.Drawing.Point(0, 0);
             this.OverviewPanel.Name = "OverviewPanel";
-            this.OverviewPanel.Size = new System.Drawing.Size(1199, 604);
+            this.OverviewPanel.Size = new System.Drawing.Size(1198, 604);
             this.OverviewPanel.TabIndex = 0;
             this.OverviewPanel.Visible = false;
             // 
@@ -285,7 +271,7 @@ namespace FormsApp
             this.SetLayoutControl.Name = "SetLayoutControl";
             this.SetLayoutControl.RowCount = 1;
             this.SetLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SetLayoutControl.Size = new System.Drawing.Size(1199, 604);
+            this.SetLayoutControl.Size = new System.Drawing.Size(1198, 604);
             this.SetLayoutControl.TabIndex = 16;
             // 
             // SetLeftLayoutControl
@@ -345,7 +331,7 @@ namespace FormsApp
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 29F));
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.SetRightLayoutControl.Size = new System.Drawing.Size(1020, 598);
+            this.SetRightLayoutControl.Size = new System.Drawing.Size(1019, 598);
             this.SetRightLayoutControl.TabIndex = 1;
             // 
             // VideoPanelContainer
@@ -357,7 +343,7 @@ namespace FormsApp
             this.VideoPanelContainer.Location = new System.Drawing.Point(0, 26);
             this.VideoPanelContainer.Margin = new System.Windows.Forms.Padding(0);
             this.VideoPanelContainer.Name = "VideoPanelContainer";
-            this.VideoPanelContainer.Size = new System.Drawing.Size(1020, 27);
+            this.VideoPanelContainer.Size = new System.Drawing.Size(1019, 27);
             this.VideoPanelContainer.TabIndex = 5;
             // 
             // BtnBold
@@ -399,7 +385,7 @@ namespace FormsApp
             // 
             this.SetRightContentTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightContentTitle.AutoSize = true;
-            this.SetRightContentTitle.Location = new System.Drawing.Point(477, 3);
+            this.SetRightContentTitle.Location = new System.Drawing.Point(476, 3);
             this.SetRightContentTitle.Name = "SetRightContentTitle";
             this.SetRightContentTitle.Size = new System.Drawing.Size(66, 20);
             this.SetRightContentTitle.TabIndex = 2;
@@ -415,7 +401,7 @@ namespace FormsApp
             this.VideoPanel.MaximumSize = new System.Drawing.Size(0, 170);
             this.VideoPanel.Name = "VideoPanel";
             this.VideoPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.VideoPanel.Size = new System.Drawing.Size(1014, 170);
+            this.VideoPanel.Size = new System.Drawing.Size(1013, 170);
             this.VideoPanel.TabIndex = 3;
             this.VideoPanel.WrapContents = false;
             // 
@@ -423,7 +409,7 @@ namespace FormsApp
             // 
             this.SetRightVideosTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightVideosTitle.AutoSize = true;
-            this.SetRightVideosTitle.Location = new System.Drawing.Point(474, 397);
+            this.SetRightVideosTitle.Location = new System.Drawing.Point(473, 397);
             this.SetRightVideosTitle.Name = "SetRightVideosTitle";
             this.SetRightVideosTitle.Size = new System.Drawing.Size(72, 20);
             this.SetRightVideosTitle.TabIndex = 1;
@@ -437,7 +423,7 @@ namespace FormsApp
             this.SetRightNoteTools.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightNoteTools.Location = new System.Drawing.Point(3, 351);
             this.SetRightNoteTools.Name = "SetRightNoteTools";
-            this.SetRightNoteTools.Size = new System.Drawing.Size(1014, 39);
+            this.SetRightNoteTools.Size = new System.Drawing.Size(1013, 39);
             this.SetRightNoteTools.TabIndex = 4;
             this.SetRightNoteTools.WrapContents = false;
             // 
@@ -479,7 +465,7 @@ namespace FormsApp
             this.SetRightMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightMainContent.Location = new System.Drawing.Point(3, 56);
             this.SetRightMainContent.Name = "SetRightMainContent";
-            this.SetRightMainContent.Size = new System.Drawing.Size(1014, 289);
+            this.SetRightMainContent.Size = new System.Drawing.Size(1013, 289);
             this.SetRightMainContent.TabIndex = 0;
             this.SetRightMainContent.Text = "";
             // 
@@ -490,7 +476,7 @@ namespace FormsApp
             this.HomePanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomePanelContainer.Location = new System.Drawing.Point(0, 0);
             this.HomePanelContainer.Name = "HomePanelContainer";
-            this.HomePanelContainer.Size = new System.Drawing.Size(1199, 604);
+            this.HomePanelContainer.Size = new System.Drawing.Size(1198, 604);
             this.HomePanelContainer.TabIndex = 16;
             // 
             // HomeSetList
@@ -505,7 +491,7 @@ namespace FormsApp
             this.HomeSetList.Location = new System.Drawing.Point(0, 0);
             this.HomeSetList.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.HomeSetList.Name = "HomeSetList";
-            this.HomeSetList.Size = new System.Drawing.Size(1199, 604);
+            this.HomeSetList.Size = new System.Drawing.Size(1198, 604);
             this.HomeSetList.TabIndex = 0;
             // 
             // AddPanelContainer
@@ -515,7 +501,7 @@ namespace FormsApp
             this.AddPanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddPanelContainer.Location = new System.Drawing.Point(0, 0);
             this.AddPanelContainer.Name = "AddPanelContainer";
-            this.AddPanelContainer.Size = new System.Drawing.Size(1199, 604);
+            this.AddPanelContainer.Size = new System.Drawing.Size(1198, 604);
             this.AddPanelContainer.TabIndex = 17;
             this.AddPanelContainer.Visible = false;
             // 
@@ -545,7 +531,7 @@ namespace FormsApp
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.AddPanel.Size = new System.Drawing.Size(1199, 604);
+            this.AddPanel.Size = new System.Drawing.Size(1198, 604);
             this.AddPanel.TabIndex = 1;
             // 
             // SetNewTitleInput
@@ -801,7 +787,6 @@ namespace FormsApp
         private System.Windows.Forms.Panel OverviewPanel;
         private TableLayoutPanel VideoShowPanelControl;
         private TableLayoutPanel VideoShowControls;
-        private Button BtnPlayPause;
         private Label label1;
         private TrackBar trackBar1;
     }

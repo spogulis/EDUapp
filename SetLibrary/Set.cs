@@ -9,7 +9,7 @@ namespace SetLibrary
     {
         //private string _Title { get; set; }
         public string Title { get; set; }
-        public string SelectedTopic;
+        public static string SelectedTopic;
         public List<string> Topics = new List<string>();
 
         public Set()
@@ -29,11 +29,7 @@ namespace SetLibrary
             return string.Join("", filename.Split(Path.GetInvalidFileNameChars()));
 
         }
-        //public void SetTitle(string title)
-        //{
-        //    Title = GetSafeFilename(title);
-        //}
-
+        
         public void ClearTopics()
         {
             Topics.Clear();

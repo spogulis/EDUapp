@@ -179,15 +179,16 @@ namespace FormsApp
             {
                 _SelectedSet = HomeSetList.SelectedItem.ToString(); //Set selected set
                 ViewTitle.Text = _SelectedSet; //Change page title
+                
+                //Show/hide controls
                 TitleBtnDelete.Visible = false;
                 TitleBtnAdd.Visible = false;
-                HomePanelContainer.Visible = false;
+                TitleBtnBack.Visible = true;
                 AddPanelContainer.Visible = false;
                 SetPanel.Visible = true;
                 OverviewPanel.Visible = true;
                 VideoShowPanel.Visible = false;
-                TitleBtnBack.Visible = true;
-                
+
                 //Create set object
                 Set set = new Set(_SelectedSet);
                 set.PopulateTopics(_exeFolder);
@@ -195,6 +196,9 @@ namespace FormsApp
                 //Redraw topic list
                 PopulateTopicList();
                 
+                //Set selected topic to 0
+                SetLeftTopicList.SelectedItem = SetLeftTopicList.Items[0];
+
                 //Change topicname field contents
                 TopicName.Text = SetLeftTopicList.Items[0].ToString(); //Fill topic name field
                 var path = Path.Combine(_setFolder, set.Title);
@@ -206,6 +210,16 @@ namespace FormsApp
                 {
                     SetRightMainContent.Rtf = sr.ReadToEnd();
                 }
+
+                
+                //Generate thumbnails
+                CreateVideoThumbnails();
+
+                
+
+                HomePanelContainer.Visible = false;
+                
+                
             }
             catch (System.ArgumentOutOfRangeException)
             {
@@ -213,29 +227,7 @@ namespace FormsApp
             }
         }
         
-        //Set selected topic to first
-        private void ResetTopic()
-        {
-            //Create set object
-            Set set = new Set(_SelectedSet);
-            set.PopulateTopics(_exeFolder);
-                
-            //Redraw topic list
-            PopulateTopicList();
-                
-            //Change topicname field contents
-            TopicName.Text = SetLeftTopicList.Items[0].ToString(); //Fill topic name field
-            var path = Path.Combine(_setFolder, set.Title);
-            path = Path.Combine(path, set.Topics[0]);
-            var filename = path + @"\" + set.Topics[0] + ".rtf";
-
-            //Read topic file contents
-            using (StreamReader sr = new StreamReader(filename))
-            {
-                SetRightMainContent.Rtf = sr.ReadToEnd();
-            }
-        }
-
+       
         //Clicking ADD btn
         private void HomeBtnAdd_Click(object sender, EventArgs e)
         {
@@ -335,25 +327,25 @@ namespace FormsApp
 
             set.PopulateTopics(_exeFolder); //Populate selected set object "topics" data
             
-            if (SetPanel.Visible == true)
+            
+            //Populate TopicList with real data
+            foreach (var topic in set.Topics)
             {
-                //Populate TopicList with real data
-                foreach (var topic in set.Topics)
-                {
-                    SetLeftTopicList.Items.Add(topic);
-                }
+                SetLeftTopicList.Items.Add(topic);
             }
+            
         }
         
         //Singleclicking Topic list item
         private void SetLeftTopicList_MouseClick(object sender, EventArgs e)
         {
-
             try
             {
-                var selectedItem = SetLeftTopicList.SelectedItem; //TODO: optimize this code block
-                CreateFolderStructure(_SelectedSet, selectedItem.ToString());
-                ClearThumbnails(_SelectedSet, selectedItem.ToString());
+                var selectedItem = SetLeftTopicList.SelectedItem.ToString(); //TODO: optimize this code block
+                TopicName.Text = selectedItem;
+                CreateFolderStructure(_SelectedSet, selectedItem);
+                ClearThumbnails(_SelectedSet, selectedItem);
+                Topic.ClearVideoList();
                 CreateVideoThumbnails(); //Create video thumbnails
                 //Topic folder
                 string exeFolder = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
@@ -374,15 +366,6 @@ namespace FormsApp
             {
 
             }
-            try
-            {
-                TopicName.Text = SetLeftTopicList.Items[SetLeftTopicList.SelectedIndex].ToString();
-            }
-            catch (System.ArgumentOutOfRangeException)
-            {
-
-            }
-
         }
         
         //Clicking "Save note"
@@ -450,6 +433,7 @@ namespace FormsApp
                 SetRightMainContent.SelectionFont = new Font(SetRightMainContent.SelectionFont, SetRightMainContent.SelectionFont.Style | FontStyle.Bold);
             }            
         }
+        
         //Underline icon click
         private void BtnUnderline_Click(object sender, EventArgs e)
         {
@@ -462,6 +446,7 @@ namespace FormsApp
                 SetRightMainContent.SelectionFont = new Font(SetRightMainContent.SelectionFont, SetRightMainContent.SelectionFont.Style | FontStyle.Underline);
             }   
         }
+        
         //Italic icon click
         private void BtnItalic_Click(object sender, EventArgs e)
         {
@@ -474,6 +459,7 @@ namespace FormsApp
                 SetRightMainContent.SelectionFont = new Font(SetRightMainContent.SelectionFont, SetRightMainContent.SelectionFont.Style | FontStyle.Italic);
             }   
         }
+        
         //Shortcuts
         private void SetRightMainContent_KeyDown(object sender, KeyEventArgs e)
         {
@@ -523,13 +509,120 @@ namespace FormsApp
             }
         }
 
+        //Code btn click
+        private void BtnCS_Click(object sender, EventArgs e)
+        {
+            
+            CTag("private ", Color.Red, 0);
+            CTag("public ", Color.Red, 0);
+            CTag("static ", Color.Red, 0);
+            CTag("abstract ", Color.Red, 0);
+            CTag("virtual ", Color.Red, 0);
+            CTag("override ", Color.Red, 0);
+            CTag("class ", Color.Blue, 0);
+            CTag("void ", Color.Blue, 0);
+            CTag("new ", Color.Red, 0);
+            CTag("if", Color.Blue, 0);
+            CTag("else", Color.Blue, 0);
+            CTag("try", Color.Blue, 0);
+            CTag("catch", Color.Blue, 0);
+            CTag("except", Color.Blue, 0);
+            CTag("this", Color.Blue, 0);
+            CTag("=", Color.Blue, 0);
+            CTag("+", Color.Blue, 0);
+            CTag("-", Color.Blue, 0);
+            CTag("*", Color.Blue, 0);
+            CTag("/", Color.Blue, 0);
+            CTag("%", Color.Blue, 0);
+            CTag("{", Color.Blue, 0);
+            CTag("}", Color.Blue, 0);
+            CTag("(", Color.Blue, 0);
+            CTag(")", Color.Blue, 0);
+            CTag("[", Color.Blue, 0);
+            CTag("]", Color.Blue, 0);
+            CTag(">", Color.Blue, 0);
+            CTag("<", Color.Blue, 0);
+            CTag(@"//", Color.Red, 0);
+            CTag(";", Color.Red, 0);
+            CTag(":", Color.Red, 0);            
+            CTag("float ", Color.Blue, 0);
+            CTag("int ", Color.Blue, 0);
+            CTag("string ", Color.Blue, 0);
+            CTag("double ", Color.Blue, 0);
+            CTag("return ", Color.Blue, 0);
+            CTag("EventArgs", Color.Red, 0);
+            CTag("EventHandler", Color.Red, 0);
+            
+        }
+
+        //C# tag
+        private void CTag(string word, Color color, int startIndex)
+        {
+            if (SetRightMainContent.Text.Contains(word))
+            {
+
+                int index = -1;
+                int selectStart = SetRightMainContent.SelectionStart;
+                while ((index = SetRightMainContent.Text.IndexOf(word, (index + 1))) != -1)
+                {
+                SetRightMainContent.Select((index + startIndex), word.Length);
+                if (SetRightMainContent.SelectionColor == color)
+                    {
+                        SetRightMainContent.SelectionColor = Color.Black;
+                    } else
+                    {
+                        SetRightMainContent.SelectionColor = color;
+                    }
+                }
+            }
+        }
+
+        //Reset topic content
+        private void BtnReset_Click(object sender, EventArgs e)
+        {
+            SetRightMainContent.SelectAll();
+            SetRightMainContent.SelectionColor = Color.Black;
+        }
+
+        //Delete topic
+        private void BtnDelTopic_Click(object sender, EventArgs e)
+        {
+            var path = GetPath(_SelectedSet, TopicName.Text);
+            Directory.Delete(path, true);
+            PopulateTopicList();
+            ResetTopic();
+        }
+
+         //Set selected topic to first
+        private void ResetTopic()
+        {
+            //Create set object
+            Set set = new Set(_SelectedSet);
+            set.PopulateTopics(_exeFolder);
+                
+            //Redraw topic list
+            PopulateTopicList();
+                
+            //Change topicname field contents
+            TopicName.Text = SetLeftTopicList.Items[0].ToString(); //Fill topic name field
+            var path = Path.Combine(_setFolder, set.Title);
+            path = Path.Combine(path, set.Topics[0]);
+            var filename = path + @"\" + set.Topics[0] + ".rtf";
+
+            //Read topic file contents
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                SetRightMainContent.Rtf = sr.ReadToEnd();
+            }
+        }
+
         /// <summary>
         /// 
         /// VIDEO METHODS
         /// 
         /// </summary>
         /// 
-
+        //Create video thumbnails
         private void CreateVideoThumbnails()
         {
             if (SetLeftTopicList.SelectedItem != null)
@@ -538,7 +631,7 @@ namespace FormsApp
                 topic.Title = _SelectedSet; // Assign Set name
                 topic.PopulateTopics(_exeFolder); // Populate Set topics list
                 var path = Path.Combine(_setFolder, topic.Title);
-                path = Path.Combine(path, topic.SelectedTopic);
+                path = Path.Combine(path, Topic.SelectedTopic);
                 path = Path.Combine(path, "Videos");
                 if (Directory.GetFiles(path).Length == 0)
                 {
@@ -546,15 +639,22 @@ namespace FormsApp
                     VideoPanel.BackgroundImage = stockpic;
                     VideoPanel.BackgroundImageLayout = ImageLayout.Center;
                     //Create tooltip
-                    
                     tooltip.SetToolTip(VideoPanel, "Click here to add videos to current topic");
+                    
+                    //Add videos on click
+                    VideoPanel.Click += delegate
+                    {
+                        AddNewVideos();
+                    };
+
+                    BtnAddVideo.Visible = false;
                 }
                 else
                 {
                     VideoPanel.BackgroundImage = null;
                     //Remove tooltip
                     tooltip.SetToolTip(VideoPanel, "");
-                    ClearThumbnails(_SelectedSet, topic.SelectedTopic); //CLEAR thumbnails
+                    ClearThumbnails(_SelectedSet, Topic.SelectedTopic); //CLEAR thumbnails
 
                     var videos = Directory.GetFiles(path); //Get video folder contents
                     foreach (var video in videos)
@@ -578,7 +678,7 @@ namespace FormsApp
                     //Generate small thumbnails
                     List<string> oldImages = new List<string>();
                     var picIndex = 0;
-                    foreach (string image in Directory.GetFiles(GetPath(_SelectedSet, topic.SelectedTopic) + @"\Videos" + @"\Thumbnails"))
+                    foreach (string image in Directory.GetFiles(GetPath(_SelectedSet, Topic.SelectedTopic) + @"\Videos" + @"\Thumbnails"))
                     {
                         oldImages.Add(image);
                         Bitmap newImage = new Bitmap(260, 130);
@@ -601,7 +701,7 @@ namespace FormsApp
                         picture.Width = 300;
                         picture.SizeMode = PictureBoxSizeMode.Normal;
                         picture.Image = new Bitmap(newImage);
-                        VideoPanel.Controls.Add(picture);
+                        VideoPanel.Controls.Add(picture); //Add new pic to list of thumbs
                         picture.Name = picIndex.ToString();
                         picture.Click += delegate
                         {
@@ -616,6 +716,9 @@ namespace FormsApp
                     {
                         File.Delete(image);
                     }
+
+                    //Show add button
+                    BtnAddVideo.Visible = true;
                 }
             }
         }
@@ -724,7 +827,36 @@ namespace FormsApp
         {
             InvokeUpdateControls();
         }
-                
+        
+        //Add videos dialog
+        private void AddNewVideos()
+        {
+            string location = GetPath(_SelectedSet, TopicName.Text);
+            location += @"\Videos";
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "All Videos Files |*.dat; *.wmv; *.3g2; *.3gp; *.3gp2; *.3gpp; *.amv; *.asf;  *.avi; *.bin; *.cue; *.divx; *.dv; *.flv; *.gxf; *.iso; *.m1v; *.m2v; *.m2t; *.m2ts; *.m4v; " +
+        " *.mkv; *.mov; *.mp2; *.mp2v; *.mp4; *.mp4v; *.mpa; *.mpe; *.mpeg; *.mpeg1; *.mpeg2; *.mpeg4; *.mpg; *.mpv2; *.mts; *.nsv; *.nuv; *.ogg; *.ogm; *.ogv; *.ogx; *.ps; *.rec; *.rm; *.rmvb; *.tod; *.ts; *.tts; *.vob; *.vro; *.webm";
+            dialog.Multiselect = true;
+            dialog.Title = "Add videos to selected topic";
+            DialogResult result = dialog.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                foreach(string f in dialog.FileNames)
+                {
+                    string newfile = Path.Combine(location, f.Remove(0, f.LastIndexOf(@"\") + 1));
+                    if (!File.Exists(newfile))
+                    {
+                        File.Copy(f, newfile);
+                    }
+                }
+            }
+        }
+
+        //Add video btn click
+        private void BtnAddVideo_Click(object sender, EventArgs e)
+        {
+            AddNewVideos();
+        }
         /// <summary>
         /// 
         /// PATH METHODS
@@ -753,84 +885,12 @@ namespace FormsApp
             ReadSetnamesFromDirectories();
         }
 
-        private void BtnCS_Click(object sender, EventArgs e)
+        //Draw topiclist item
+        private void SetLeftTopicList_DrawItem(object sender, DrawItemEventArgs e)
         {
-            
-            CTag("private ", Color.Red, 0);
-            CTag("public ", Color.Red, 0);
-            CTag("static ", Color.Red, 0);
-            CTag("abstract ", Color.Red, 0);
-            CTag("virtual ", Color.Red, 0);
-            CTag("override ", Color.Red, 0);
-            CTag("class ", Color.Blue, 0);
-            CTag("void ", Color.Blue, 0);
-            CTag("new ", Color.Red, 0);
-            CTag("if", Color.Blue, 0);
-            CTag("else", Color.Blue, 0);
-            CTag("try", Color.Blue, 0);
-            CTag("catch", Color.Blue, 0);
-            CTag("except", Color.Blue, 0);
-            CTag("this", Color.Blue, 0);
-            CTag("=", Color.Blue, 0);
-            CTag("+", Color.Blue, 0);
-            CTag("-", Color.Blue, 0);
-            CTag("*", Color.Blue, 0);
-            CTag("/", Color.Blue, 0);
-            CTag("%", Color.Blue, 0);
-            CTag("{", Color.Blue, 0);
-            CTag("}", Color.Blue, 0);
-            CTag("(", Color.Blue, 0);
-            CTag(")", Color.Blue, 0);
-            CTag("[", Color.Blue, 0);
-            CTag("]", Color.Blue, 0);
-            CTag("//", Color.Red, 0);
-            CTag(";", Color.Red, 0);
-            CTag(":", Color.Red, 0);            
-            CTag("float ", Color.Blue, 0);
-            CTag("int ", Color.Blue, 0);
-            CTag("string ", Color.Blue, 0);
-            CTag("double ", Color.Blue, 0);
-            CTag("return ", Color.Blue, 0);
-            CTag("EventArgs", Color.Red, 0);
-            CTag("EventHandler", Color.Red, 0);
-            
-        }
-
-        //C# tag
-        private void CTag(string word, Color color, int startIndex)
-        {
-            if (SetRightMainContent.Text.Contains(word))
-            {
-
-                int index = -1;
-                int selectStart = SetRightMainContent.SelectionStart;
-                while ((index = SetRightMainContent.Text.IndexOf(word, (index + 1))) != -1)
-                {
-                SetRightMainContent.Select((index + startIndex), word.Length);
-                if (SetRightMainContent.SelectionColor == color)
-                    {
-                        SetRightMainContent.SelectionColor = Color.Black;
-                    } else
-                    {
-                        SetRightMainContent.SelectionColor = color;
-                    }
-                }
-            }
-        }
-
-        private void BtnReset_Click(object sender, EventArgs e)
-        {
-            SetRightMainContent.SelectAll();
-            SetRightMainContent.SelectionColor = Color.Black;
-            //MessageBox.Show(SetRightMainContent.ForeColor.ToString());
-        }
-
-        private void BtnDelTopic_Click(object sender, EventArgs e)
-        {
-            var path = GetPath(_SelectedSet, TopicName.Text);
-            Directory.Delete(path, true);
-            PopulateTopicList();
-            ResetTopic();
+            e.DrawBackground();
+            Brush brush = Brushes.Red;
+            e.Graphics.DrawString(SetLeftTopicList.Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
         }
     }
 }

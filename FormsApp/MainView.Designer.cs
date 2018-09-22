@@ -52,6 +52,7 @@ namespace FormsApp
             this.TopicNameLabel = new System.Windows.Forms.Label();
             this.TopicName = new System.Windows.Forms.RichTextBox();
             this.NoteNameSave = new System.Windows.Forms.Button();
+            this.BtnDelTopic = new System.Windows.Forms.Button();
             this.SetRightMainContent = new System.Windows.Forms.RichTextBox();
             this.SetRightContentControls = new System.Windows.Forms.TableLayoutPanel();
             this.SetRightContentControlsLeft = new System.Windows.Forms.TableLayoutPanel();
@@ -60,6 +61,7 @@ namespace FormsApp
             this.BtnBold = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BtnCS = new System.Windows.Forms.Button();
+            this.BtnReset = new System.Windows.Forms.Button();
             this.VideoShowPanel = new System.Windows.Forms.Panel();
             this.VideoShowPanelControl = new System.Windows.Forms.TableLayoutPanel();
             this.VideoShowControls = new System.Windows.Forms.TableLayoutPanel();
@@ -81,8 +83,7 @@ namespace FormsApp
             this.TitleBtnDelete = new System.Windows.Forms.Button();
             this.ViewTitle = new System.Windows.Forms.Label();
             this.TitleBtnBack = new System.Windows.Forms.Button();
-            this.BtnReset = new System.Windows.Forms.Button();
-            this.BtnDelTopic = new System.Windows.Forms.Button();
+            this.BtnAddVideo = new System.Windows.Forms.Button();
             this.BaseLayoutControl.SuspendLayout();
             this.BasePanel.SuspendLayout();
             this.ContentContainer.SuspendLayout();
@@ -156,7 +157,7 @@ namespace FormsApp
             this.BasePanel.ColumnCount = 3;
             this.BasePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 3.098373F));
             this.BasePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 96.90163F));
-            this.BasePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.BasePanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 76F));
             this.BasePanel.Controls.Add(this.ContentContainer, 1, 1);
             this.BasePanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.BasePanel.Location = new System.Drawing.Point(3, 53);
@@ -176,7 +177,7 @@ namespace FormsApp
             this.ContentContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContentContainer.Location = new System.Drawing.Point(41, 36);
             this.ContentContainer.Name = "ContentContainer";
-            this.ContentContainer.Size = new System.Drawing.Size(1194, 604);
+            this.ContentContainer.Size = new System.Drawing.Size(1193, 604);
             this.ContentContainer.TabIndex = 15;
             // 
             // SetPanel
@@ -186,7 +187,7 @@ namespace FormsApp
             this.SetPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetPanel.Location = new System.Drawing.Point(0, 0);
             this.SetPanel.Name = "SetPanel";
-            this.SetPanel.Size = new System.Drawing.Size(1194, 604);
+            this.SetPanel.Size = new System.Drawing.Size(1193, 604);
             this.SetPanel.TabIndex = 17;
             this.SetPanel.Visible = false;
             // 
@@ -196,7 +197,7 @@ namespace FormsApp
             this.OverviewPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.OverviewPanel.Location = new System.Drawing.Point(0, 0);
             this.OverviewPanel.Name = "OverviewPanel";
-            this.OverviewPanel.Size = new System.Drawing.Size(1194, 604);
+            this.OverviewPanel.Size = new System.Drawing.Size(1193, 604);
             this.OverviewPanel.TabIndex = 0;
             this.OverviewPanel.Visible = false;
             // 
@@ -214,7 +215,7 @@ namespace FormsApp
             this.SetLayoutControl.Name = "SetLayoutControl";
             this.SetLayoutControl.RowCount = 1;
             this.SetLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SetLayoutControl.Size = new System.Drawing.Size(1194, 604);
+            this.SetLayoutControl.Size = new System.Drawing.Size(1193, 604);
             this.SetLayoutControl.TabIndex = 16;
             // 
             // SetLeftLayoutControl
@@ -252,6 +253,7 @@ namespace FormsApp
             this.SetLeftTopicList.Name = "SetLeftTopicList";
             this.SetLeftTopicList.Size = new System.Drawing.Size(151, 564);
             this.SetLeftTopicList.TabIndex = 2;
+            this.SetLeftTopicList.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.SetLeftTopicList_DrawItem);
             // 
             // SetRightLayoutControl
             // 
@@ -276,14 +278,14 @@ namespace FormsApp
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SetRightLayoutControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.SetRightLayoutControl.Size = new System.Drawing.Size(1016, 598);
+            this.SetRightLayoutControl.Size = new System.Drawing.Size(1015, 598);
             this.SetRightLayoutControl.TabIndex = 1;
             // 
             // SetRightContentTitle
             // 
             this.SetRightContentTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightContentTitle.AutoSize = true;
-            this.SetRightContentTitle.Location = new System.Drawing.Point(475, 3);
+            this.SetRightContentTitle.Location = new System.Drawing.Point(474, 3);
             this.SetRightContentTitle.Name = "SetRightContentTitle";
             this.SetRightContentTitle.Size = new System.Drawing.Size(66, 20);
             this.SetRightContentTitle.TabIndex = 2;
@@ -299,7 +301,7 @@ namespace FormsApp
             this.VideoPanel.MaximumSize = new System.Drawing.Size(0, 170);
             this.VideoPanel.Name = "VideoPanel";
             this.VideoPanel.Padding = new System.Windows.Forms.Padding(10);
-            this.VideoPanel.Size = new System.Drawing.Size(1010, 170);
+            this.VideoPanel.Size = new System.Drawing.Size(1009, 170);
             this.VideoPanel.TabIndex = 3;
             this.VideoPanel.WrapContents = false;
             // 
@@ -307,7 +309,7 @@ namespace FormsApp
             // 
             this.SetRightVideosTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.SetRightVideosTitle.AutoSize = true;
-            this.SetRightVideosTitle.Location = new System.Drawing.Point(472, 377);
+            this.SetRightVideosTitle.Location = new System.Drawing.Point(471, 377);
             this.SetRightVideosTitle.Name = "SetRightVideosTitle";
             this.SetRightVideosTitle.Size = new System.Drawing.Size(72, 20);
             this.SetRightVideosTitle.TabIndex = 1;
@@ -319,10 +321,11 @@ namespace FormsApp
             this.SetRightNoteTools.Controls.Add(this.TopicName);
             this.SetRightNoteTools.Controls.Add(this.NoteNameSave);
             this.SetRightNoteTools.Controls.Add(this.BtnDelTopic);
+            this.SetRightNoteTools.Controls.Add(this.BtnAddVideo);
             this.SetRightNoteTools.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightNoteTools.Location = new System.Drawing.Point(3, 331);
             this.SetRightNoteTools.Name = "SetRightNoteTools";
-            this.SetRightNoteTools.Size = new System.Drawing.Size(1010, 39);
+            this.SetRightNoteTools.Size = new System.Drawing.Size(1009, 39);
             this.SetRightNoteTools.TabIndex = 4;
             this.SetRightNoteTools.WrapContents = false;
             // 
@@ -358,13 +361,25 @@ namespace FormsApp
             this.NoteNameSave.UseVisualStyleBackColor = false;
             this.NoteNameSave.Click += new System.EventHandler(this.NoteNameSave_Click);
             // 
+            // BtnDelTopic
+            // 
+            this.BtnDelTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.BtnDelTopic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnDelTopic.Location = new System.Drawing.Point(389, 3);
+            this.BtnDelTopic.Name = "BtnDelTopic";
+            this.BtnDelTopic.Size = new System.Drawing.Size(75, 31);
+            this.BtnDelTopic.TabIndex = 3;
+            this.BtnDelTopic.Text = "Delete";
+            this.BtnDelTopic.UseVisualStyleBackColor = false;
+            this.BtnDelTopic.Click += new System.EventHandler(this.BtnDelTopic_Click);
+            // 
             // SetRightMainContent
             // 
             this.SetRightMainContent.BackColor = System.Drawing.Color.White;
             this.SetRightMainContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SetRightMainContent.Location = new System.Drawing.Point(3, 67);
             this.SetRightMainContent.Name = "SetRightMainContent";
-            this.SetRightMainContent.Size = new System.Drawing.Size(1010, 258);
+            this.SetRightMainContent.Size = new System.Drawing.Size(1009, 258);
             this.SetRightMainContent.TabIndex = 0;
             this.SetRightMainContent.Text = "";
             // 
@@ -380,7 +395,7 @@ namespace FormsApp
             this.SetRightContentControls.Name = "SetRightContentControls";
             this.SetRightContentControls.RowCount = 1;
             this.SetRightContentControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.SetRightContentControls.Size = new System.Drawing.Size(1010, 32);
+            this.SetRightContentControls.Size = new System.Drawing.Size(1009, 32);
             this.SetRightContentControls.TabIndex = 3;
             // 
             // SetRightContentControlsLeft
@@ -391,7 +406,7 @@ namespace FormsApp
             this.SetRightContentControlsLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SetRightContentControlsLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SetRightContentControlsLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 329F));
-            this.SetRightContentControlsLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.SetRightContentControlsLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 96F));
             this.SetRightContentControlsLeft.Controls.Add(this.BtnItalic, 2, 0);
             this.SetRightContentControlsLeft.Controls.Add(this.BtnUnderline, 1, 0);
             this.SetRightContentControlsLeft.Controls.Add(this.BtnBold, 0, 0);
@@ -401,7 +416,7 @@ namespace FormsApp
             this.SetRightContentControlsLeft.Name = "SetRightContentControlsLeft";
             this.SetRightContentControlsLeft.RowCount = 1;
             this.SetRightContentControlsLeft.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.SetRightContentControlsLeft.Size = new System.Drawing.Size(505, 32);
+            this.SetRightContentControlsLeft.Size = new System.Drawing.Size(504, 32);
             this.SetRightContentControlsLeft.TabIndex = 6;
             // 
             // BtnItalic
@@ -445,11 +460,11 @@ namespace FormsApp
             this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 64F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 282F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 371F));
             this.tableLayoutPanel1.Controls.Add(this.BtnCS, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.BtnReset, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(505, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(504, 0);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
@@ -470,13 +485,25 @@ namespace FormsApp
             this.BtnCS.UseVisualStyleBackColor = false;
             this.BtnCS.Click += new System.EventHandler(this.BtnCS_Click);
             // 
+            // BtnReset
+            // 
+            this.BtnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.BtnReset.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnReset.Location = new System.Drawing.Point(3, 3);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(64, 26);
+            this.BtnReset.TabIndex = 1;
+            this.BtnReset.Text = "Reset";
+            this.BtnReset.UseVisualStyleBackColor = false;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
             // VideoShowPanel
             // 
             this.VideoShowPanel.Controls.Add(this.VideoShowPanelControl);
             this.VideoShowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.VideoShowPanel.Location = new System.Drawing.Point(0, 0);
             this.VideoShowPanel.Name = "VideoShowPanel";
-            this.VideoShowPanel.Size = new System.Drawing.Size(1194, 604);
+            this.VideoShowPanel.Size = new System.Drawing.Size(1193, 604);
             this.VideoShowPanel.TabIndex = 0;
             this.VideoShowPanel.Visible = false;
             // 
@@ -493,7 +520,7 @@ namespace FormsApp
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 93.04636F));
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.953642F));
             this.VideoShowPanelControl.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 47F));
-            this.VideoShowPanelControl.Size = new System.Drawing.Size(1194, 604);
+            this.VideoShowPanelControl.Size = new System.Drawing.Size(1193, 604);
             this.VideoShowPanelControl.TabIndex = 0;
             // 
             // VideoShowControls
@@ -513,7 +540,7 @@ namespace FormsApp
             this.VideoShowControls.Name = "VideoShowControls";
             this.VideoShowControls.RowCount = 1;
             this.VideoShowControls.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.VideoShowControls.Size = new System.Drawing.Size(1188, 42);
+            this.VideoShowControls.Size = new System.Drawing.Size(1187, 42);
             this.VideoShowControls.TabIndex = 0;
             // 
             // label1
@@ -531,7 +558,7 @@ namespace FormsApp
             this.trackBar1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.trackBar1.Location = new System.Drawing.Point(3, 521);
             this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(1188, 32);
+            this.trackBar1.Size = new System.Drawing.Size(1187, 32);
             this.trackBar1.TabIndex = 1;
             // 
             // HomePanelContainer
@@ -541,7 +568,7 @@ namespace FormsApp
             this.HomePanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.HomePanelContainer.Location = new System.Drawing.Point(0, 0);
             this.HomePanelContainer.Name = "HomePanelContainer";
-            this.HomePanelContainer.Size = new System.Drawing.Size(1194, 604);
+            this.HomePanelContainer.Size = new System.Drawing.Size(1193, 604);
             this.HomePanelContainer.TabIndex = 16;
             // 
             // HomeSetList
@@ -556,7 +583,7 @@ namespace FormsApp
             this.HomeSetList.Location = new System.Drawing.Point(0, 0);
             this.HomeSetList.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             this.HomeSetList.Name = "HomeSetList";
-            this.HomeSetList.Size = new System.Drawing.Size(1194, 604);
+            this.HomeSetList.Size = new System.Drawing.Size(1193, 604);
             this.HomeSetList.TabIndex = 0;
             // 
             // AddPanelContainer
@@ -566,7 +593,7 @@ namespace FormsApp
             this.AddPanelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.AddPanelContainer.Location = new System.Drawing.Point(0, 0);
             this.AddPanelContainer.Name = "AddPanelContainer";
-            this.AddPanelContainer.Size = new System.Drawing.Size(1194, 604);
+            this.AddPanelContainer.Size = new System.Drawing.Size(1193, 604);
             this.AddPanelContainer.TabIndex = 17;
             this.AddPanelContainer.Visible = false;
             // 
@@ -596,7 +623,7 @@ namespace FormsApp
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 52F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
             this.AddPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.AddPanel.Size = new System.Drawing.Size(1194, 604);
+            this.AddPanel.Size = new System.Drawing.Size(1193, 604);
             this.AddPanel.TabIndex = 1;
             // 
             // SetNewTitleInput
@@ -756,29 +783,19 @@ namespace FormsApp
             this.TitleBtnBack.Visible = false;
             this.TitleBtnBack.Click += new System.EventHandler(this.TitleBtnBack_Click);
             // 
-            // BtnReset
+            // BtnAddVideo
             // 
-            this.BtnReset.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.BtnReset.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnReset.Location = new System.Drawing.Point(3, 3);
-            this.BtnReset.Name = "BtnReset";
-            this.BtnReset.Size = new System.Drawing.Size(64, 26);
-            this.BtnReset.TabIndex = 1;
-            this.BtnReset.Text = "Reset";
-            this.BtnReset.UseVisualStyleBackColor = false;
-            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
-            // 
-            // BtnDelTopic
-            // 
-            this.BtnDelTopic.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
-            this.BtnDelTopic.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.BtnDelTopic.Location = new System.Drawing.Point(389, 3);
-            this.BtnDelTopic.Name = "BtnDelTopic";
-            this.BtnDelTopic.Size = new System.Drawing.Size(75, 31);
-            this.BtnDelTopic.TabIndex = 3;
-            this.BtnDelTopic.Text = "Delete";
-            this.BtnDelTopic.UseVisualStyleBackColor = false;
-            this.BtnDelTopic.Click += new System.EventHandler(this.BtnDelTopic_Click);
+            this.BtnAddVideo.AutoSize = true;
+            this.BtnAddVideo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.BtnAddVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.BtnAddVideo.Location = new System.Drawing.Point(470, 3);
+            this.BtnAddVideo.Name = "BtnAddVideo";
+            this.BtnAddVideo.Size = new System.Drawing.Size(101, 31);
+            this.BtnAddVideo.TabIndex = 4;
+            this.BtnAddVideo.Text = "Add videos";
+            this.BtnAddVideo.UseVisualStyleBackColor = false;
+            this.BtnAddVideo.Visible = false;
+            this.BtnAddVideo.Click += new System.EventHandler(this.BtnAddVideo_Click);
             // 
             // MainView
             // 
@@ -885,5 +902,6 @@ namespace FormsApp
         private TableLayoutPanel tableLayoutPanel1;
         private Button BtnReset;
         private Button BtnDelTopic;
+        private Button BtnAddVideo;
     }
 }

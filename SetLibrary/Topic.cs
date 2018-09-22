@@ -23,5 +23,10 @@ namespace SetLibrary
         {
             _videoList.Add(file);
         }
+
+        public static void ClearVideoList()
+        {
+            _videoList.Clear();
+        }
     }
 }

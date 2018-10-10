@@ -8,3 +8,5 @@ What works:
 5) Play a video
 6) Navigate back from Add view > Main page, from Topic view > Main page
 7) Change text bold, underline and italic attributes with buttons and shortcut keys
+8) Rename set
+9) Delete topic

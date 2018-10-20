@@ -14,6 +14,7 @@ using FileHandlerLibrary.FileHandlers;
 using ModelLibrary.Models.Topic;
 using Telerik.WinControls.UI;
 using Telerik.WinControls;
+using System.Text.RegularExpressions;
 
 namespace NoteTrackUI.Presenters
 {
@@ -60,8 +61,7 @@ namespace NoteTrackUI.Presenters
         private void LoadDefaultSet()
         {
             SetModel.SelectedTopic = _setModel.SetTopics[0].TopicName;
-            //_setView.MainContent.LoadFile(Encoding.ASCII.GetString(_setModel.SetTopics[0].TopicFile), RichTextBoxStreamType.RichText);
-            _setView.MainContent.LoadFile(Encoding.ASCII.GetString(_setModel.SetTopics[_setView.TopicListbox.SelectedIndex].TopicFile));
+            _setView.MainContent.LoadFile(Encoding.ASCII.GetString(_setModel.SetTopics[0].TopicFile), RichTextBoxStreamType.RichText);
             _setView.InputNewTopicName.Text = SetModel.SelectedTopic;
             AddThumbsToPanel();
         }
@@ -336,17 +336,23 @@ namespace NoteTrackUI.Presenters
         private void OnBtnNewOldTopicSave_Click(object sender, EventArgs e)
         {
             //MB if empty or save topic file
+            string legalchars = "^[a-zA-Z0-9 ]*$";
+            Regex regex = new Regex(legalchars);
+
             if (_setView.InputNewTopicName.Text == "")
             {
                 MessageBox.Show("Topic name cannot be empty");
             }
+            else if (!regex.IsMatch(_setView.InputNewTopicName.Text))
+            {
+                MessageBox.Show("Topic name can only contain letters or numbers");
+            }            
             else
             {
-                
                 CreateTopic();
                 PopulateTopicListbox();
                 _setView.LabelNewTopicName.Text = "Save existing topic";
-
+                
             }
         }
 

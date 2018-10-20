@@ -50,8 +50,8 @@ namespace NoteTrackUI.Presenters
 
         public bool SubmitNewSet()
         {
-            string illegalChars = "^[\\w ]+$";
-            Regex regex = new Regex(illegalChars);
+            string legalchars = "^[a-zA-Z0-9 ]*$";
+            Regex regex = new Regex(legalchars);
             if (_addSetView.TitleInput.Text == "" || _addSetView.TopicInput.Text == "")
             {
                 MessageBox.Show("Please fill out all fields!");
@@ -76,8 +76,9 @@ namespace NoteTrackUI.Presenters
                 else
                 {
                     _topicModel.TopicName = _addSetView.TopicInput.Text;
+
                     byte[] topicFileInByte = Encoding.ASCII.GetBytes(_addSetView.TopicContentInput.Rtf); //Get content of TopicInput as bytes
-                
+
                     //_topicModel.TopicFile = ms;
                     _topicModel.TopicFile = topicFileInByte;
                     _setModel.SetTopics.Add(_topicModel);

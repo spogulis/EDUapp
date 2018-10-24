@@ -1,4 +1,4 @@
-EDUapp
+NoteTrack
 
 What works:
 1) Display a list of existing sets @ main page

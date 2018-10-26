@@ -51,9 +51,8 @@ namespace NoteTrackUI.Presenters
             _setView.btnAddVideos.MouseClick += BtnAddVideos_MouseClick;
             _setView.TopicListbox.SelectedIndex = 0;
             PopulateTopicListbox();
-            LoadDefaultSet();
         }
-        
+
 
         /// <summary>
         /// Load set data
@@ -61,7 +60,8 @@ namespace NoteTrackUI.Presenters
         private void LoadDefaultSet()
         {
             SetModel.SelectedTopic = _setModel.SetTopics[0].TopicName;
-            _setView.MainContent.LoadFile(Encoding.ASCII.GetString(_setModel.SetTopics[0].TopicFile), RichTextBoxStreamType.RichText);
+            _setView.TopicListbox.SelectedIndex = 0;
+            _setView.MainContent.LoadFile(Encoding.ASCII.GetString(_setModel.SetTopics[_setView.TopicListbox.SelectedIndex].TopicFile));
             _setView.InputNewTopicName.Text = SetModel.SelectedTopic;
             AddThumbsToPanel();
         }
@@ -70,6 +70,7 @@ namespace NoteTrackUI.Presenters
         public void ShowSetView()
         {
             _mainView.MainPanel.Controls.Add(_setView.SetViewMainPanel, 1, 0);
+            LoadDefaultSet();
         }
 
 

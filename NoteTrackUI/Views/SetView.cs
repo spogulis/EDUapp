@@ -66,21 +66,19 @@ namespace NoteTrackUI.Views
         }
 
 
-        private void TopicListbox_DrawItem(object sender, DrawItemEventArgs e)
-        {
-            if (e.Index != -1)
-            {
-                e.DrawBackground();
-                Graphics g = e.Graphics;
-                Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : new SolidBrush(Color.OliveDrab);
-                Brush background = ((e.State & DrawItemState.Selected) == DrawItemState.Selected ? new SolidBrush(Color.FromArgb(51, 153, 255)) : new SolidBrush(Color.Black));
-                g.FillRectangle(background, e.Bounds);
-                e.Graphics.DrawString(TopicListbox.Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
-                e.DrawFocusRectangle();
-                //TODO: Figure out how to draw a separator line. This below doesn't work automatically
-                //e.Graphics.DrawLine(Pens.OliveDrab, e.Bounds.Left, e.Bounds.Bottom, e.Bounds.Right, e.Bounds.Bottom);
-            }
-        }
+        //private void TopicListbox_DrawItem(object sender, DrawItemEventArgs e)
+        //{
+        //    if (e.Index != -1)
+        //    {
+        //        e.DrawBackground();
+        //        Graphics g = e.Graphics;
+        //        Brush brush = ((e.State & DrawItemState.Selected) == DrawItemState.Selected) ? Brushes.White : new SolidBrush(Color.OliveDrab);
+        //        Brush background = ((e.State & DrawItemState.Selected) == DrawItemState.Selected ? new SolidBrush(Color.FromArgb(51, 153, 255)) : new SolidBrush(Color.Black));
+        //        g.FillRectangle(background, e.Bounds);
+        //        e.Graphics.DrawString(TopicListbox.Items[e.Index].ToString(), e.Font, brush, e.Bounds, StringFormat.GenericDefault);
+        //        e.DrawFocusRectangle();
+        //    }
+        //}
 
         //private void TopicListbox_MeasureItem(object sender, MeasureItemEventArgs e)
         //{
@@ -111,9 +109,6 @@ namespace NoteTrackUI.Views
             if (e.Column == 0 && e.Row == 0)
             {
                 e.Graphics.DrawLine(Pens.OliveDrab, new Point(e.CellBounds.Left, e.CellBounds.Bottom), new Point(e.CellBounds.Right, e.CellBounds.Bottom));
-                //e.Graphics.DrawRectangle(Pens.OliveDrab, e.CellBounds);
-
-                //TODO: Another cell separator line
             }
 
             if (e.Column == 0 && e.Row == 1)
@@ -130,7 +125,6 @@ namespace NoteTrackUI.Views
                 e.Graphics.DrawLine(Pens.OliveDrab, new Point(e.CellBounds.Left, e.CellBounds.Top), new Point(e.CellBounds.Left, e.CellBounds.Bottom));
 
                 e.Graphics.DrawLine(Pens.OliveDrab, new Point(e.CellBounds.Left, e.CellBounds.Bottom), new Point(e.CellBounds.Right, e.CellBounds.Bottom));
-
             }
 
             if (e.Column == 1)
@@ -142,8 +136,6 @@ namespace NoteTrackUI.Views
                     e.Graphics.DrawLine(Pens.OliveDrab, new Point(e.CellBounds.Left, e.CellBounds.Top), new Point(e.CellBounds.Right, e.CellBounds.Top));
                 }
             }
-
-            
         }
 
         private void ListboxPanel_Paint(object sender, PaintEventArgs e)

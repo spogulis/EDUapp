@@ -16,6 +16,7 @@ What works:
 9) Delete topic
 
 Planned features:
+* Pressing TAB inside editor moves string multiple spaces
 * Video name on mouse over event
 * Select and delete a video
 * Play a youtube video when clicking a link in the text editor

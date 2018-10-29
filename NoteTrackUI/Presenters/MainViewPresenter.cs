@@ -176,7 +176,6 @@ namespace NoteTrackUI.Presenters
             {
                 SetModel.SelectedSet = _setlistboxPresenter._setlistboxView.HomeSetList.SelectedItem.Text;
                 _setlistboxPresenter.CloseSetlistbox();
-
                 _setViewPresenter = StaticFactory.CreateSetViewPresenter(_mainView); //New SetViewPresenter on DCLICK
                 _setViewPresenter.ShowSetView();
                 _mainView.btnRename.Visible = false;

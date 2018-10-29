@@ -474,12 +474,21 @@ namespace NoteTrackUI.Presenters
                 _setView.VideoThumbPanel.Controls.Add(picture);
                 loc.X += 310;
                 picture.Name = i.ToString();
+                //Play video on mouse click
                 picture.Click += delegate
                 {
                     PlayVideo(Int32.Parse(picture.Name));
                 };
+                //Display video name on mouse hover
+                picture.MouseHover += new EventHandler((s, e) => thumbGotFocus(s, e, picture, thumb));
                 
                 i++;
+
+                void thumbGotFocus(object sender, EventArgs e, Control pic, string title)
+                {
+                    ToolTip tt = new ToolTip();
+                    tt.SetToolTip(picture, title.Remove(0, title.LastIndexOf('\\') + 1).Substring(0, title.Remove(0, title.LastIndexOf('\\') + 1).Length - 4));
+                }
             }
         }
 

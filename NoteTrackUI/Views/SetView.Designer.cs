@@ -49,8 +49,8 @@
             this.VideoThumbPanel = new Telerik.WinControls.UI.RadScrollablePanel();
             this.ListboxPanel = new System.Windows.Forms.TableLayoutPanel();
             this.LabelTopicListbox = new System.Windows.Forms.Label();
-            this.visualStudio2012DarkTheme1 = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.TopicListbox = new Telerik.WinControls.UI.RadListView();
+            this.visualStudio2012DarkTheme1 = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.visualStudio2012DarkTheme2 = new Telerik.WinControls.Themes.VisualStudio2012DarkTheme();
             this.fluentDarkTheme1 = new Telerik.WinControls.Themes.FluentDarkTheme();
             this.SetViewMainPanel.SuspendLayout();
@@ -216,6 +216,7 @@
             // 
             // MainContent
             // 
+            this.MainContent.AcceptsTab = true;
             this.MainContent.BackColor = System.Drawing.Color.White;
             this.MainContent.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.MainContent.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -322,7 +323,7 @@
             // 
             // VideoThumbPanel.PanelContainer
             // 
-            this.VideoThumbPanel.PanelContainer.Margin = new System.Windows.Forms.Padding(2, 1, 2, 1);
+            this.VideoThumbPanel.PanelContainer.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.VideoThumbPanel.PanelContainer.Size = new System.Drawing.Size(988, 168);
             this.VideoThumbPanel.Size = new System.Drawing.Size(990, 170);
             this.VideoThumbPanel.TabIndex = 9;
